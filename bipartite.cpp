@@ -20,5 +20,14 @@ bool dfs(int src, int color) {
 }
 
 int main(){
-    
+    int n; cin >> n;
+    int m; cin >> m;
+    int a, b;
+    for(int i=0; i<m; i++) {
+        cin >> a >> b;
+        Nodes[a].push_back(b);
+        Nodes[b].push_back(a);
+    }
+
+    cout << dfs(1, 0);
 }
