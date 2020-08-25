@@ -20,14 +20,37 @@ bool dfs(int src, int color) {
 }
 
 int main(){
-    int n; cin >> n;
-    int m; cin >> m;
-    int a, b;
-    for(int i=0; i<m; i++) {
-        cin >> a >> b;
-        Nodes[a].push_back(b);
-        Nodes[b].push_back(a);
-    }
+    int t; cin >> t;
+    int test = 1;
+    while(t--) {
+        int n; cin >> n;
+        int m; cin >> m;
 
-    cout << dfs(1, 0);
+        for(int i=1; i<=n; i++) {
+            Nodes[i].clear();
+            vis[i] = 0;
+        }
+
+        int a, b;
+        for(int i=0; i<m; i++) {
+            cin >> a >> b;
+            Nodes[a].push_back(b);
+            Nodes[b].push_back(a);
+        }
+
+        bool ans = true;
+
+        for(int i=1; i<=n; i++) {
+            if(vis[i] == 0) {
+                ans = dfs(i, 0);
+                if(!ans)  break;
+            }
+        }
+
+
+        cout << "Scenario #" << test << ":\n";
+        if(!ans) cout << "Suspicious bugs found!\n";
+        else cout << "No suspicious bugs found!\n";
+        test++;
+    }
 }
