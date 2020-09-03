@@ -10,7 +10,7 @@ bool detectCycle(int src, int par) {
         if(vis[child] == 0) {
             if(detectCycle(child, src) == true)
                 return true;
-        } else if(child == par)
+        } else if(child != par)
             return true;
     }
 
